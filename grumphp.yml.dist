@@ -1,0 +1,15 @@
+parameters:
+    tasks:
+        phpcsfixer2:
+            config: .php_cs.dist
+        phpcs:
+            standard: vendor/lhjx/phpcs/src/Lhjx
+            whitelist_patterns:
+                - /^frontend\//
+                - /^backend\//
+                - /^console\//
+                - /^common\//
+            ignore_patterns: 
+                - /_bootstrap.php
+                - /AppAsset.php
+                - /before-yii.php
