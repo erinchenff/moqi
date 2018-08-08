@@ -34,20 +34,37 @@ $config = [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
             ],
         ],
-        */
+        'view' => [
+            'class' => 'yii\web\View',
+            'renderers' => [
+                'twig' => [
+                    'class' => 'yii\twig\ViewRenderer',
+                    'cachePath' => '@runtime/twig/cache',
+                    'options' => [
+                    ],
+                    'extensions' => [
+                    ],
+                    'globals' => [
+                        'html' => ['class' => '\yii\helpers\Html'],
+                    ],
+                    'uses' => [
+                        'yii\bootstrap',
+                    ],
+                ],
+            ],
+        ],
     ],
     'modules' => [],
 ];
 
+// configuration adjustments for 'dev' environment
 if (YII_ENV_DEV) {
-    // configuration adjustments for 'dev' environment
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
@@ -57,6 +74,12 @@ if (YII_ENV_DEV) {
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
     ];
+
+    // Twig的开发环境设置
+    $config['components']['view']['renderers']['twig']['options']['auto_reload'] = true; // 自动重新加载模板
+    $config['components']['view']['renderers']['twig']['options']['debug'] = true; // 开启调试
+
+    $config['components']['view']['renderers']['twig']['extensions'][] = 'Twig_Extension_Debug'; // 加载调试扩展
 }
 
 return $config;

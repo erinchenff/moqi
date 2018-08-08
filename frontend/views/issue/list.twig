@@ -1,0 +1,12 @@
+{% for issue in issues %}
+    <ul>
+        <li>{{ issue.id }}</li>
+        <li>{{ issue.fields.name }}</li>
+        <li>{{ issue.fields.status.name }}</li>
+        <li>{{ issue.fields.priority.name }}</li>
+        <li>{{ issue.fields.dateCreated|date('Y-m-d H:i:s') }}</li>
+        <li>{{ issue.fields.dateModified|date('Y-m-d H:i:s') }}</li>
+        <li>{{ issue.fields['custom.lhjx.shipDate']|date('Y-m-d H:i:s') }}</li>
+        <li>{{ issue.fields['custom.lhjx.verifyDate']|date('Y-m-d H:i:s') }}</li>
+    </ul>
+{% endfor %}
