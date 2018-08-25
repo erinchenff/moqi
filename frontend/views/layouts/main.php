@@ -18,12 +18,45 @@ AppAsset::register($this);
         <?= Html::csrfMetaTags(); ?>
         <title><?= Html::encode($this->title); ?></title>
         <?php $this->head(); ?>
+        <style>
+            body {
+                padding-top: 60px;
+            }
+            #footer {
+                padding-top: 2em;
+            }
+        </style>
     </head>
     <body>
-        <p id="me"><a href="/auth/login">去登录</a></p>
+        <div id="nav-main" class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-main-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <a class="navbar-brand" href="#">默契</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="nav-main-collapse">
+                    <ul class="nav navbar-nav">
+                    </ul>
+
+                    <p id="me" class="navbar-text navbar-right"><a href="/auth/login">去登录</a></p>
+                </div>
+            </div>
+        </div>
+
+        <p id="me"></p>
         <?php $this->beginBody(); ?>
 
         <?= $content; ?>
+
+        <p id="footer" class="text-center">
+            <?php echo date('Y'); ?><br>
+        </p>
 
         <?php $this->endBody(); ?>
         <script>

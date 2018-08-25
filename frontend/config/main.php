@@ -51,7 +51,7 @@ $config = [
                     'extensions' => [
                     ],
                     'globals' => [
-                        'html' => ['class' => '\yii\helpers\Html'],
+                        'html' => ['class' => 'yii\helpers\Html'],
                     ],
                     'uses' => [
                         'yii\bootstrap',
@@ -61,6 +61,10 @@ $config = [
         ],
     ],
     'modules' => [],
+    // 访问控制
+    'as guard' => [
+        'class' => 'App\Filter\Guard',
+    ],
 ];
 
 // configuration adjustments for 'dev' environment

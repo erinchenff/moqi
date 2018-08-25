@@ -1,16 +1,22 @@
 {{ use('/yii/widgets/ActiveForm') }}
 
-{% if error is not null %}
-<p>{{ error }}</p>
-{% endif %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            {% if error is not null %}
+            <p>{{ error }}</p>
+            {% endif %}
+            
+            {% set form = active_form_begin({
+                'action': '/auth/check'
+            }) %}
 
-{% set form = active_form_begin({
-    'action': '/auth/check'
-}) %}
+            {{ form.field(model, 'loginName') | raw }}
+            {{ form.field(model, 'password').passwordInput() | raw }}
 
-{{ form.field(model, 'loginName') | raw }}
-{{ form.field(model, 'password').passwordInput() | raw }}
+            <input class="btn btn-primary btn-block" type="submit" value="登录">
 
-<input type="submit" value="登录">
-
-{{ active_form_end() }}
+            {{ active_form_end() }}
+        </div>
+    </div>
+</div>
