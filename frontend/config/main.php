@@ -3,7 +3,6 @@
 $config = [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
-    'language' => 'zh-CN',
     'controllerNamespace' => 'frontend\controllers',
     'bootstrap' => ['log'],
     'components' => [
