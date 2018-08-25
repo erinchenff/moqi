@@ -2,19 +2,15 @@
 
 namespace frontend\controllers;
 
-use Lhjx\Phabot\Conduit\Client;
-use yii\web\Controller;
-
-class IssueController extends Controller
+class IssueController extends BaseController
 {
     public function actionList()
     {
-        $client = new Client('https://dx.wangcaigu.cn/', '');
+        $client = $this->get('conduitClient');
+
         $issues = $client->request('maniphest.search', [
             'limit' => 10,
         ]);
-
-        //var_dump($issues['data'][0]);
 
         return $this->render('list.twig', [
             'issues' => $issues['data'],

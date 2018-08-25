@@ -1,0 +1,16 @@
+{{ use('/yii/widgets/ActiveForm') }}
+
+{% if error is not null %}
+<p>{{ error }}</p>
+{% endif %}
+
+{% set form = active_form_begin({
+    'action': '/auth/check'
+}) %}
+
+{{ form.field(model, 'loginName') | raw }}
+{{ form.field(model, 'password').passwordInput() | raw }}
+
+<input type="submit" value="登录">
+
+{{ active_form_end() }}

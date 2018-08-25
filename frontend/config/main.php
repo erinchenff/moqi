@@ -8,13 +8,13 @@ $config = [
     'bootstrap' => ['log'],
     'components' => [
         'request' => [
-            'csrfParam' => '_csrf_token',
+            'csrfParam' => '_csrfToken',
             'enableCookieValidation' => false,
         ],
         'user' => [
-            'identityClass' => 'common\models\User',
+            'identityClass' => 'App\Model\User',
             'enableAutoLogin' => true,
-            'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
+            'identityCookie' => ['name' => 'i', 'httpOnly' => true],
         ],
         'session' => [
             // this is the name of the session cookie used for login on the frontend

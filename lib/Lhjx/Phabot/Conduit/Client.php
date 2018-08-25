@@ -7,12 +7,12 @@ use GuzzleHttp\Client as GuzzleClient;
 class Client
 {
     private $httpClient;
-    private $baseUri;
+    private $conduitUri;
     private $conduitToken;
 
-    public function __construct($baseUri, $conduitToken)
+    public function __construct($conduitUri, $conduitToken)
     {
-        $this->baseUri = $baseUri;
+        $this->conduitUri = $conduitUri;
         $this->conduitToken = $conduitToken;
     }
 
@@ -43,7 +43,7 @@ class Client
     {
         if (null === $this->httpClient) {
             $this->httpClient = new GuzzleClient([
-                'base_uri' => $this->baseUri,
+                'base_uri' => $this->conduitUri,
             ]);
         }
 
