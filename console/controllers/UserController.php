@@ -2,9 +2,9 @@
 
 namespace console\controllers;
 
-use App\Model\Login;
-use App\Model\LoginType;
-use App\Model\User;
+use common\models\Login;
+use common\models\LoginType;
+use common\models\User;
 
 class UserController extends BaseController
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model;
+namespace common\models;
 
 class Login extends BaseActiveRecord
 {

@@ -23,7 +23,7 @@ class BaseController extends Controller
     }
 
     /**
-     * @return \App\Model\User
+     * @return \common\models\User
      */
     public function getAuthedUser()
     {

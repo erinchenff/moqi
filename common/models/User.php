@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model;
+namespace common\models;
 
 use Yii;
 use yii\base\NotSupportedException;
@@ -20,16 +20,6 @@ class User extends BaseActiveRecord implements IdentityInterface
         return $user;
     }
 
-    public function setPassword($password)
-    {
-        $this->passwordHash = Yii::$app->security->generatePasswordHash($password);
-    }
-
-    public function validatePassword($password)
-    {
-        return Yii::$app->security->validatePassword($password, $this->passwordHash);
-    }
-
     public static function findIdentity($id)
     {
         return static::findOne(['id' => $id, 'isDisabled' => false]);
@@ -38,6 +28,26 @@ class User extends BaseActiveRecord implements IdentityInterface
     public static function findIdentityByAccessToken($token, $type = null)
     {
         throw new NotSupportedException();
+    }
+
+    /**
+     * 根据登录名找到未禁用的用户
+     *
+     * @return User
+     */
+    public static function findOneActiveByLoginName($loginName)
+    {
+        $user = null;
+
+        $login = Login::findOne(['name' => $loginName]);
+        if (null !== $login) {
+            $user = User::findOne([
+                'id' => $login->userId,
+                'isDisabled' => false,
+            ]);
+        }
+
+        return $user;
     }
 
     public function getId()
@@ -53,5 +63,15 @@ class User extends BaseActiveRecord implements IdentityInterface
     public function validateAuthKey($authKey)
     {
         return false;
+    }
+
+    public function setPassword($password)
+    {
+        $this->passwordHash = Yii::$app->security->generatePasswordHash($password);
+    }
+
+    public function validatePassword($password)
+    {
+        return Yii::$app->security->validatePassword($password, $this->passwordHash);
     }
 }

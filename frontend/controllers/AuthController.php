@@ -2,7 +2,7 @@
 
 namespace frontend\controllers;
 
-use App\Model\LoginAuth;
+use common\models\LoginAuth;
 use Yii;
 
 class AuthController extends BaseController

@@ -11,7 +11,7 @@ $config = [
             'enableCookieValidation' => false,
         ],
         'user' => [
-            'identityClass' => 'App\Model\User',
+            'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => 'i', 'httpOnly' => true],
         ],
@@ -62,7 +62,7 @@ $config = [
     'modules' => [],
     // 访问控制
     'as guard' => [
-        'class' => 'App\Filter\Guard',
+        'class' => 'common\filters\Guard',
     ],
 ];
 

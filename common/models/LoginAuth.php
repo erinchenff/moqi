@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model;
+namespace common\models;
 
 use Yii;
 use yii\base\Model;
@@ -23,18 +23,8 @@ class LoginAuth extends Model
             return false;
         }
 
-        $login = Login::findOne(['name' => $this->loginName]);
-        if (null === $login) {
-            $this->addError('loginName', '用户名或密码错误');
-
-            return false;
-        }
-
-        $user = User::findOne([
-            'id' => $login->userId,
-            'isDisabled' => false,
-        ]);
-        if (null === $login) {
+        $user = User::findOneActiveByLoginName($this->loginName);
+        if (null === $user) {
             $this->addError('loginName', '用户名或密码错误');
 
             return false;
