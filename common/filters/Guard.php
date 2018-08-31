@@ -11,6 +11,7 @@ class Guard extends ActionFilter
     public $except = [
         'site/index',
         'auth/*',
+        'debug/*', // 允许未登录时显示调试工具条
     ];
 
     public function beforeAction($action)
